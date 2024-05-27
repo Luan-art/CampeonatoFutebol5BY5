@@ -100,7 +100,7 @@ BEGIN
 			SET golsFeitos = golsFeitos + @golsVisitante, 
 				golsSofridos = golsSofridos + @golsMandante, 
 				saldoDeGol = (golsFeitos + @golsVisitante) - (golsSofridos + @golsMandante), 
-				pontos = pontos + 3 
+				pontos = pontos + 5
 		   WHERE id = @idVisitante;
 		END			
 END;	
@@ -158,8 +158,8 @@ FROM  Partida AS P JOIN  TimeFut AS TM ON P.idMandante = TM.id JOIN TimeFut AS T
 --Tabela
 Select Nome, Apelido, dataCriacao, Pontos, golsFeitos, golsSofridos, MaiorNumGols, saldoDeGol from TimeFut order by pontos Desc, saldoDeGol Desc;
 
---Campe„o
-SELECT TOP 1 nome as 'Campe„o', apelido, pontos, golsFeitos as 'Gols Feitos', golsSofridos as 'Gols Sofridos', saldoDeGol as 'Saldo de Gols'
+--Campe√£o
+SELECT TOP 1 nome as 'Campe√£o', apelido, pontos, golsFeitos as 'Gols Feitos', golsSofridos as 'Gols Sofridos', saldoDeGol as 'Saldo de Gols'
 FROM TimeFut ORDER BY pontos DESC, saldoDeGol DESC;
 
 --Time que mais marcou
@@ -174,8 +174,8 @@ FROM Partida as P join TimeFut as TM on (P.idMandante = TM.id) join TimeFut as T
 ORDER BY TotalGols DESC;
 
 --MaisGolsEmUmaPartida
-SELECT T.nome AS 'Time', T.MaiorNumGols AS 'Maior N˙mero de Gols desse Time em Uma Partida', P.DataJogo AS 'Data do Jogo',
-    CASE WHEN P.IdMandante = T.Id THEN TV.nome ELSE TM.nome END AS 'Advers·rio'
+SELECT T.nome AS 'Time', T.MaiorNumGols AS 'Maior N√∫mero de Gols desse Time em Uma Partida', P.DataJogo AS 'Data do Jogo',
+    CASE WHEN P.IdMandante = T.Id THEN TV.nome ELSE TM.nome END AS 'Advers√°rio'
 FROM TimeFut T JOIN Partida P ON (P.IdMandante = T.Id AND P.GolsMandante = T.MaiorNumGols) OR (P.IdVisitante = T.Id AND P.GolsVisitante = T.MaiorNumGols)
 JOIN TimeFut TM ON P.IdMandante = TM.Id  JOIN TimeFut TV ON P.IdVisitante = TV.Id
 ORDER BY T.nome DESC;
