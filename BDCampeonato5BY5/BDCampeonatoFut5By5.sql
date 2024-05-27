@@ -29,7 +29,7 @@ if not exists (select * from sysobjects where name='Partida' and xtype='U')
 Go
 
 CREATE or Alter PROC InserirTime
-    @nome varchar(100),
+        @nome varchar(100),
 	@apelido varchar(50),
 	@dataCriacao date
 AS
@@ -42,7 +42,7 @@ GO
 
 
 CREATE or ALTER PROC RealizarJogo
-    @idMandante int,
+        @idMandante int,
 	@idVisitante int,
 	@golsMandante int,
 	@golsVisitante int,
